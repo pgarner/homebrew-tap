@@ -7,7 +7,6 @@ class Tracter < Formula
   license "BSD-3-Clause"
 
   depends_on "cmake" => :build
-  depends_on "boost"
   depends_on "libresample"
   depends_on "lube"
   depends_on "sptk"
