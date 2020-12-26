@@ -1,10 +1,10 @@
 class Lube < Formula
   desc "Lubricates the wheels of C++"
   homepage "https://github.com/pgarner/libube"
-  url "https://github.com/pgarner/libube/archive/v1.0.tar.gz"
+  url "https://github.com/pgarner/libube/archive/v1.0.1.tar.gz"
   head "https://github.com/pgarner/libube.git"
-  version "1.0"
-  sha256 "e4f94286810ba54f3fd259ac28e6ff16b87a9cca92424b24a6a91f1a2b386d66"
+  version "1.0.1"
+  sha256 "f6638b7a12501a5c3431be26f84ab55837bbfcd276aa61c4c2bb03f8674d486b"
   license "BSD-3-Clause"
 
   on_macos do
