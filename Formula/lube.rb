@@ -14,9 +14,6 @@ class Lube < Formula
   depends_on "cmake" => :build
   depends_on "libsndfile"
 
-  *opts = %w(
-  )
-
   def install
     system "cmake", ".",
            "-DCMAKE_DISABLE_FIND_PACKAGE_Qwt=TRUE",
