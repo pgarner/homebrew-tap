@@ -4,7 +4,7 @@ class Irstlm < Formula
   head "https://github.com/irstlm-team/irstlm"
   version "6.00.05"
   url "https://github.com/irstlm-team/irstlm/archive/v#{version}.tar.gz"
-  sha256 ""
+  sha256 "0d0ca97a58351710f3bca8a43bdcca880dbc766a1f73389b359b4df6357df9ec"
   license "LGPL"
 
   depends_on "cmake" => :build
