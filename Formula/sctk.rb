@@ -10,7 +10,8 @@ class Sctk < Formula
   def install
     system "make", "PREFIX=#{prefix}", "config"
     system "make", "all"
-    system "make", "INSTALL=install -D", "install"
+    bin.mkpath
+    system "make", "install"
   end
 
   test do
