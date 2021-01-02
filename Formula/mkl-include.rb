@@ -15,7 +15,7 @@ class MklInclude < Formula
   on_macos do
     build = "intel_50"
     url "#{intel}/mkl-include/#{version}/download/osx-64/mkl-include-#{version}-#{build}.tar.bz2"
-    sha256 ""
+    sha256 "51e7dc29437249973072b878fc67a8223f99da2af211f09a1f9ef0d9ea599817"
   end
 
   def install
