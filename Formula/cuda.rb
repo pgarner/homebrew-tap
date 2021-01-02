@@ -1,8 +1,3 @@
-#
-# This is quite big: 3G download, 5G unpack and 5G installation
-# Consider using
-#   HOMEBREW_TEMP=/somewhere/big brew install cuda
-#
 class Cuda < Formula
   desc "NVidia CUDA Toolkit"
   homepage "https://developer.nvidia.com/cuda-zone"
@@ -20,8 +15,12 @@ class Cuda < Formula
            "--installpath=#{prefix}",
            "--silent", "--override", "--toolkit",
            "--no-man-page", "--no-drm", "--no-opengl-libs"
-    #include.install Dir["include/*"]
-    #lib.install Dir["lib64/*"]
+
+    # These two links cause trouble for brew; why?  Anyway, this works:
+    rm "#{prefix}/include"
+    rm "#{prefix}/lib64"
+    include.install_symlink Dir["#{prefix}/targets/x86_64-linux/include/*"]
+    lib.install_symlink Dir["#{prefix}/targets/x86_64-linux/lib/*"]
   end
 
   test do
