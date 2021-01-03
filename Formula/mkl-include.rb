@@ -19,8 +19,8 @@ class MklInclude < Formula
   end
 
   def install
-    # There are .f90 and .fi files too...
-    include.install Dir["include/*.h"]
+    # There are .f90 and .fi files too, but hey...
+    prefix.install "include"
   end
 
   test do
