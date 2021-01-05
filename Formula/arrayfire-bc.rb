@@ -23,15 +23,15 @@ class ArrayfireBc < Formula
       "-DAF_BUILD_OPENCL=OFF",
       "-DAF_WITH_CUDNN=ON",
       "-DUSE_CPU_MKL=ON",
-      "-DUSE_OPENCL_MKL=ON",
       "-DAF_BUILD_EXAMPLES=ON",
       "-DAF_BUILD_DOCS=OFF",
+      "-DCMAKE_STRIP=FALSE",
       "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8" # CUDA 10.2
     ]
 
     mkdir "build" do
       system "cmake", "..", *std_cmake_args, *args
-      system "make"
+      #system "make"
       system "make", "install"
     end
     pkgshare.install "examples"
