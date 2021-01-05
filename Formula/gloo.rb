@@ -1,9 +1,8 @@
 class Gloo < Formula
   desc "Facebook collective communications library"
   homepage "https://github.com/facebookincubator/gloo"
-  url "https://github.com/facebookincubator/gloo", revision => "1da2117"
+  url "https://github.com/facebookincubator/gloo.git", revision: "1da2117"
   version "2020.12.03"
-  sha256 ""
   license "BSD"
 
   depends_on "cmake" => :build
