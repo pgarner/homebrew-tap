@@ -14,8 +14,9 @@ class Nccl < Formula
     ENV["HOMEBREW_CC"] = "gcc-8"
     ENV["HOMEBREW_CXX"] = "g++-8"
     system "make", "src.build", "CUDA_HOME=#{Formula["cuda@10.2"].prefix}"
-    lib.install "build/lib"
-    include.install "build/include"
+
+    include.install Dir["build/include/*"]
+    lib.install Dir["build/lib/*"]
   end
 
   test do
