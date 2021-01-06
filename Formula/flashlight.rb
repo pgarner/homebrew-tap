@@ -10,6 +10,7 @@ class Flashlight < Formula
   depends_on "nccl"
   depends_on "gloo"
   depends_on "glog"
+  depends_on "open-mpi"
 
   def install
     args = [
