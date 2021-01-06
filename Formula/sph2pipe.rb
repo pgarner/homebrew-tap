@@ -12,6 +12,7 @@ class Sph2pipe < Formula
   def install
     system "cmake", ".", *std_cmake_args
     system "make", "install"
+    pkgshare.install "test"
   end
 
   test do
