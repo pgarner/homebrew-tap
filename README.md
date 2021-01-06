@@ -1,6 +1,10 @@
-# Phil Garner's homebrew-tap
+# Phil Garner's homebrew tap
+
+## Overview
 
 A generic homebrew tap to publish builds for my software and more generally for Idiap speech tools.  Current feeling is that many things in [BuSLR](https://github.com/idiap/buslr) can be ported here.
+
+## Compute
 
 One key thing we need to support is the binary compute libraries, namely MKL and CUDA.
 
@@ -11,3 +15,8 @@ By contrast, NVidia doesn't ship headers in its conda packages, but the binary d
 HOMEBREW_TEMP=~/scratch/tmp brew install cuda
 ```
 where `scratch` is larger than `/tmp`.
+
+## Tips
+
+This [example](https://github.com/syhw/homebrew/blob/master/Library/Contributions/example-formula.rb) is very useful.
+
