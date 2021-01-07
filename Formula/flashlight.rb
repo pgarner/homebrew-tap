@@ -14,9 +14,9 @@ class Flashlight < Formula
 
   def install
     args = [
-      "-DFL_BACKEND=CUDA",
-      "-DNCCL_ROOR_DIR=#{HOMEBREW_PREFIX}",
-      "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8"
+      # "-DFL_BACKEND=CUDA",
+      # "-DNCCL_ROOR_DIR=#{HOMEBREW_PREFIX}",
+      # "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8"
     ]
     system "cmake", ".", *std_cmake_args, *args
     system "make", "install"
