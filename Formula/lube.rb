@@ -12,6 +12,7 @@ class Lube < Formula
   end
 
   depends_on "cmake" => :build
+  depends_on "mkl"
   depends_on "libsndfile"
 
   def install
