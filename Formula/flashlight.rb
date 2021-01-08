@@ -15,11 +15,13 @@ class Flashlight < Formula
   end
 
   def install
-    args = [
-      "-DFL_BACKEND=CPU",
-      # "-DNCCL_ROOR_DIR=#{HOMEBREW_PREFIX}",
-      # "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8"
-    ]
+    args = []
+    on_linux do
+      args << "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8"
+    end
+    on_macos do
+      args << "-DFL_BACKEND=CPU"
+    end
     system "cmake", ".", *std_cmake_args, *args
     system "make", "install"
   end
