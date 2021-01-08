@@ -13,8 +13,10 @@ class Kaldi < Formula
   end
 
   def install
-    cd buildpath/"tools" do
-      system "make", "cub"
+    on_linux do
+      cd buildpath/"tools" do
+        system "make", "cub"
+      end
     end
     cd buildpath/"src" do
       confargs = [
@@ -28,6 +30,9 @@ class Kaldi < Formula
         confargs << "--cudatk-dir=#{Formula["cuda@10.2"].prefix}"
         ENV["CC"] = "gcc-8"
         ENV["CXX"] = "g++-8"
+      end
+      on_macos do
+        confargs << "--use-cuda=no"
       end
       system "bash", "configure", *confargs
       system "make", "depend"

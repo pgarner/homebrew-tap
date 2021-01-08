@@ -12,22 +12,28 @@ class ArrayfireBc < Formula
   depends_on "cmake" => :build
   depends_on "freeimage"
   depends_on "mkl"
-  depends_on "cuda@10.2" # This is a cuDNN limitation
-  depends_on "cudnn"
+  on_linux do
+    depends_on "cuda@10.2" # This is a cuDNN limitation
+    depends_on "cudnn"
+  end
 
   def install
     # Can also specify -DCUDA_architecture_build_targets=3.0;3.5;...
     args = [
       "-DAF_BUILD_CPU=ON",
-      "-DAF_BUILD_CUDA=ON",
       "-DAF_BUILD_OPENCL=OFF",
-      "-DAF_WITH_CUDNN=ON",
       "-DUSE_CPU_MKL=ON",
       "-DAF_BUILD_EXAMPLES=ON",
       "-DAF_BUILD_DOCS=OFF",
       "-DCMAKE_STRIP=FALSE",
-      "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8" # CUDA 10.2
     ]
+    on_linux do
+      args += [
+        "-DAF_BUILD_CUDA=ON",
+        "-DAF_WITH_CUDNN=ON",
+        "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8" # CUDA 10.2
+      ]
+    end
 
     mkdir "build" do
       system "cmake", "..", *std_cmake_args, *args

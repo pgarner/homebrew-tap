@@ -7,14 +7,16 @@ class Flashlight < Formula
 
   depends_on "cmake" => :build
   depends_on "arrayfire-bc"
-  depends_on "nccl"
   depends_on "gloo"
   depends_on "glog"
   depends_on "open-mpi"
+  on_linux do
+    depends_on "nccl"
+  end
 
   def install
     args = [
-      # "-DFL_BACKEND=CUDA",
+      "-DFL_BACKEND=CPU",
       # "-DNCCL_ROOR_DIR=#{HOMEBREW_PREFIX}",
       # "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8"
     ]

@@ -6,15 +6,18 @@ class Gloo < Formula
   license "BSD"
 
   depends_on "cmake" => :build
-  depends_on "cuda@10.2"
-  depends_on "gloo"
+  on_linux do
+    depends_on "cuda@10.2"
+  end
 
   def install
     args = [
       "-DUSE_MPI=ON",
-      "-DUSE_CUDA=ON",
-      "-DUSE_NCCL=ON"
     ]
+    on_linux do
+      args << "-DUSE_CUDA=ON"
+      args << "-DUSE_NCCL=ON"
+    end
     system "cmake", ".", *std_cmake_args, *args
     system "make", "install"
   end
