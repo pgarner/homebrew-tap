@@ -1,5 +1,5 @@
 # Copied from homebrew-core with binary compute added
-class ArrayfireBc < Formula
+class Arrayfire < Formula
   desc "Accelerated computing library"
   homepage "https://arrayfire.com"
   url "https://github.com/arrayfire/arrayfire/releases/download/v3.7.3/arrayfire-full-3.7.3.tar.bz2"

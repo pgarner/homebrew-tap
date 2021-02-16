@@ -6,10 +6,11 @@ class Flashlight < Formula
   license "BSD"
 
   depends_on "cmake" => :build
-  depends_on "arrayfire-bc"
+  depends_on "pgarner/tap/arrayfire"
   depends_on "gloo"
   depends_on "glog"
-  depends_on "open-mpi"
+  depends_on "pgarner/tap/open-mpi"
+
   on_linux do
     depends_on "nccl"
   end
