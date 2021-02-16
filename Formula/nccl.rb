@@ -8,12 +8,10 @@ class Nccl < Formula
   license "NVidia"
 
   depends_on :linux
-  depends_on "cuda@10.2"
+  depends_on "cuda"
 
   def install
-    ENV["HOMEBREW_CC"] = "gcc-8"
-    ENV["HOMEBREW_CXX"] = "g++-8"
-    system "make", "src.build", "CUDA_HOME=#{Formula["cuda@10.2"].prefix}"
+    system "make", "src.build", "CUDA_HOME=#{Formula["cuda"].prefix}"
 
     include.install Dir["build/include/*"]
     lib.install Dir["build/lib/*"]
