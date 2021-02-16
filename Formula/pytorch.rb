@@ -7,6 +7,7 @@ class Pytorch < Formula
 
   depends_on "cmake" => :build
   depends_on "mkl"
+  depends_on "magma"
   depends_on "glog"
   depends_on "protobuf"
 

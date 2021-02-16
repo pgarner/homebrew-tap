@@ -7,7 +7,9 @@ class Magma < Formula
   license "BSD"
 
   depends_on "cmake" => :build
-  depends_on "cuda@10.2"
+  on_linux do
+    depends_on "cuda"
+  end
 
   def install
     mkdir "build" do
