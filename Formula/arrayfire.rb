@@ -13,7 +13,7 @@ class Arrayfire < Formula
   depends_on "freeimage"
   depends_on "mkl"
   on_linux do
-    depends_on "cuda@10.2" # This is a cuDNN limitation
+    depends_on "cuda"
     depends_on "cudnn"
   end
 
@@ -31,13 +31,12 @@ class Arrayfire < Formula
       args += [
         "-DAF_BUILD_CUDA=ON",
         "-DAF_WITH_CUDNN=ON",
-        "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8" # CUDA 10.2
+        # "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8" # CUDA 10.2
       ]
     end
 
     mkdir "build" do
       system "cmake", "..", *std_cmake_args, *args
-      #system "make"
       system "make", "install"
     end
     pkgshare.install "examples"
