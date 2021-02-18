@@ -18,12 +18,12 @@ class Pytorch < Formula
   end
 
   on_linux do
-    depends_on "cuda@10.2"
+    depends_on "cuda"
     depends_on "cudnn"
     depends_on "nccl"
     depends_on "gloo"
-    ENV["HOMEBREW_CC"] = "gcc-8"
-    ENV["HOMEBREW_CXX"] = "g++-8"
+    #ENV["HOMEBREW_CC"] = "gcc-8"
+    #ENV["HOMEBREW_CXX"] = "g++-8"
     ENV["CUDNN_LIB_DIR"] = Formula["cudnn"].lib
     ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
   end
