@@ -7,6 +7,7 @@ class Cuda < Formula
   url "https://developer.download.nvidia.com/compute/cuda/#{version}/local_installers/cuda_#{version}_#{vdriver}_linux.run"
   sha256 "9c50283241ac325d3085289ed9b9c170531369de41165ce271352d4a898cbdce"
 
+  keg_only "bin/../nvvm expected to exist"
   depends_on :linux
 
   def install
