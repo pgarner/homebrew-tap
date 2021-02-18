@@ -15,7 +15,7 @@ class Magma < Formula
     mkdir "build" do
       args = [
         # CUDA 11 actually supports 3.5 upwards, but not 3.0
-        -DGPU_TARGET="Maxwell Pascal Volta Turing Ampere"
+        "-DGPU_TARGET=Maxwell Pascal Volta Turing Ampere"
       ]
       system "cmake", "..", *args, *std_cmake_args
       system "make", "install"
