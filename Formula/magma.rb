@@ -7,11 +7,13 @@ class Magma < Formula
   license "BSD"
 
   depends_on "cmake" => :build
+  depends_on "mkl"
   on_linux do
     depends_on "cuda"
   end
 
   def install
+    ENV["MKLROOT"] = "#{HOMEBREW_PREFIX}"
     mkdir "build" do
       args = [
         # CUDA 11 actually supports 3.5 upwards, but not 3.0

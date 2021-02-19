@@ -8,11 +8,13 @@ class Gloo < Formula
   depends_on "cmake" => :build
   on_linux do
     depends_on "cuda"
+    depends_on "nccl"
   end
 
   def install
     args = [
       "-DUSE_MPI=ON",
+      "-DCUDA_ARCH_NAME=Volta"
     ]
     on_linux do
       args << "-DUSE_CUDA=ON"
