@@ -10,8 +10,7 @@ class Pytorch < Formula
   depends_on "magma"
   depends_on "glog"
   depends_on "protobuf"
-
-  ENV["BUILD_CUSTOM_PROTOBUF"] = "OFF"
+  depends_on "onednn"
 
   on_macos do
     uses_from_macos "python@3"
@@ -24,12 +23,14 @@ class Pytorch < Formula
     depends_on "gloo"
     #ENV["HOMEBREW_CC"] = "gcc-8"
     #ENV["HOMEBREW_CXX"] = "g++-8"
-    ENV["CUDNN_LIB_DIR"] = Formula["cudnn"].lib
-    ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
   end
 
   def install
     ENV["CMAKE_PREFIX_PATH"] = prefix
+    ENV["MKLROOT"] = "#{HOMEBREW_PREFIX}"
+    ENV["BUILD_CUSTOM_PROTOBUF"] = "OFF"
+    ENV["CUDNN_LIB_DIR"] = Formula["cudnn"].lib
+    ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
     system "python3", "setup.py", "install", "--prefix=#{prefix}",
            "--single-version-externally-managed", "--record=installed.txt"
   end
