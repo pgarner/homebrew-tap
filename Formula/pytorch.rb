@@ -8,9 +8,10 @@ class Pytorch < Formula
   depends_on "cmake" => :build
   depends_on "mkl"
   depends_on "magma"
-  depends_on "glog"
-  depends_on "protobuf"
-  depends_on "onednn"
+  depends_on "gflags"   # But not found
+  depends_on "glog"     # But not found
+  depends_on "protobuf" # But not found
+  depends_on "onednn"   # Found, but builds custom
 
   on_macos do
     uses_from_macos "python@3"
@@ -19,20 +20,17 @@ class Pytorch < Formula
   on_linux do
     depends_on "cuda"
     depends_on "cudnn"
-    depends_on "nccl"
-    depends_on "gloo"
-    #ENV["HOMEBREW_CC"] = "gcc-8"
-    #ENV["HOMEBREW_CXX"] = "g++-8"
+    depends_on "nccl"   # Found, but builds custom
+    depends_on "gloo"   # Found, but builds custom
   end
 
   def install
-    ENV["CMAKE_PREFIX_PATH"] = prefix
-    ENV["MKLROOT"] = "#{HOMEBREW_PREFIX}"
-    ENV["BUILD_CUSTOM_PROTOBUF"] = "OFF"
+    ENV["INTEL_MKL_DIR"] = "#{HOMEBREW_PREFIX}"
     ENV["CUDNN_LIB_DIR"] = Formula["cudnn"].lib
     ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
-    system "python3", "setup.py", "install", "--prefix=#{prefix}",
-           "--single-version-externally-managed", "--record=installed.txt"
+    ENV["NCCL_LIB_DIR"] = Formula["nccl"].lib
+    ENV["NCCL_INCLUDE_DIR"] = Formula["nccl"].include
+    system "pip3", "-v", "install", "-t", "#{prefix}", "."
   end
 
   test do
