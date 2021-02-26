@@ -23,6 +23,7 @@ class Mkl < Formula
 
   def install
     lib.install Dir["lib/*"]
+    ln_s lib/".", lib/"intel64"
   end
 
   test do
