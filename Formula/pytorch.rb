@@ -8,10 +8,10 @@ class Pytorch < Formula
   depends_on "cmake" => :build
   depends_on "mkl"
   depends_on "magma"
-  depends_on "gflags"   # But not found
-  depends_on "glog"     # But not found
-  depends_on "protobuf" # But not found
-  depends_on "onednn"   # Found, but builds custom
+#  depends_on "gflags"   # But not found
+#  depends_on "glog"     # But not found
+#  depends_on "protobuf" # But not found
+#  depends_on "onednn"   # Found, but builds custom
 
   on_macos do
     uses_from_macos "python@3"
@@ -20,8 +20,8 @@ class Pytorch < Formula
   on_linux do
     depends_on "cuda"
     depends_on "cudnn"
-    depends_on "nccl"   # Found, but builds custom
-    depends_on "gloo"   # Found, but builds custom
+#    depends_on "nccl"   # Found, but builds custom
+#    depends_on "gloo"   # Found, but builds custom
   end
 
   def install
@@ -30,7 +30,7 @@ class Pytorch < Formula
     ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
     ENV["NCCL_LIB_DIR"] = Formula["nccl"].lib
     ENV["NCCL_INCLUDE_DIR"] = Formula["nccl"].include
-    system "pip3", "-v", "install", "-t", "#{prefix}", "."
+    system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
   end
 
   test do
