@@ -13,8 +13,9 @@ class Apex < Formula
   depends_on "pytorch"
 
   def install
-    # This is not portable; how to get the pythonX.Y ?
-    ENV["PYTHONPATH"] = "#{HOMEBREW_PREFIX}/lib/python3.7/site-packages"
+    xy = Language::Python.major_minor_version "python3"
+    ENV.prepend_create_path "PYTHONPATH",
+      "#{HOMEBREW_PREFIX}/lib/python#{xy}/site-packages"
     args = %W[
       -v
       --prefix #{prefix}
