@@ -11,7 +11,7 @@ class Kaldi < Formula
   depends_on "openfst@1.6.7"
   depends_on "mkl"
   on_linux do
-    depends_on "cuda"
+    depends_on "cuda@11.1"
   end
 
   def install
@@ -28,7 +28,7 @@ class Kaldi < Formula
         # "--shared", # May break an "install"
       ]
       on_linux do
-        confargs << "--cudatk-dir=#{Formula["cuda"].prefix}"
+        confargs << "--cudatk-dir=#{Formula["cuda@11.1"].prefix}"
       end
       on_macos do
         confargs << "--use-cuda=no"
