@@ -9,7 +9,7 @@ class Magma < Formula
   depends_on "cmake" => :build
   depends_on "mkl"
   on_linux do
-    depends_on "cuda"
+    depends_on "cuda@11.1"
   end
 
   def install
