@@ -1,4 +1,4 @@
-class CudaCompat < Formula
+class CudaCompatAT112 < Formula
   desc "NVidia CUDA compatibility library"
   homepage "https://www.nvidia.com/Download/index.aspx"
   license "NVidia"
@@ -7,7 +7,7 @@ class CudaCompat < Formula
   url "https://us.download.nvidia.com/tesla/#{vdriver}/NVIDIA-Linux-x86_64-#{vdriver}.run"
   sha256 "4f2122fc23655439f214717c4c35ab9b4f5ab8537cddfdf059a5682f1b726061"
 
-  keg_only "It's only required in compatibility circumstances"
+  keg_only :versioned_formula
   depends_on :linux
 
   def install
