@@ -20,9 +20,11 @@ class Openpose < Formula
       "-DUSE_MKL=ON",
       "-DCUDA_ARCH=All"
     ]
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
-    system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
+    # In-place build makes it easier to install compiled examples
+    system "cmake", ".", *std_cmake_args, *args
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
+    pkgshare.install "examples"
   end
 
   test do
