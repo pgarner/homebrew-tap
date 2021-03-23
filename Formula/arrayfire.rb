@@ -14,12 +14,11 @@ class Arrayfire < Formula
   depends_on "freeimage"
   depends_on "mkl"
   on_linux do
-    depends_on "cuda"
-    depends_on "cudnn"
+    depends_on "cuda11"
+    depends_on "cudnn11"
   end
 
   def install
-    # Can also specify -DCUDA_architecture_build_targets=3.0;3.5;...
     args = [
       "-DAF_BUILD_CPU=ON",
       "-DAF_BUILD_OPENCL=OFF",
@@ -27,12 +26,12 @@ class Arrayfire < Formula
       "-DAF_BUILD_EXAMPLES=ON",
       "-DAF_BUILD_DOCS=OFF",
       "-DCMAKE_STRIP=FALSE",
+      "-DCUDA_architecture_build_targets=3.7;6.1;7.0;7.5;8.6+PTX"
     ]
     on_linux do
       args += [
         "-DAF_BUILD_CUDA=ON",
         "-DAF_WITH_CUDNN=ON",
-        # "-DCUDA_HOST_COMPILER=/usr/bin/gcc-8" # CUDA 10.2
       ]
     end
 
