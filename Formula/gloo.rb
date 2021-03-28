@@ -7,7 +7,7 @@ class Gloo < Formula
 
   depends_on "cmake" => :build
   on_linux do
-    depends_on "cuda"
+    depends_on "cuda11"
     depends_on "nccl"
   end
 
