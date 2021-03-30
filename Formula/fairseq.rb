@@ -5,7 +5,6 @@ class Fairseq < Formula
   url "https://github.com/pytorch/fairseq.git", tag: "v#{version}"
   license "MIT"
 
-  depends_on "cmake" => :build
   depends_on "pytorch"
 
   on_macos do
@@ -17,9 +16,6 @@ class Fairseq < Formula
   end
 
   def install
-    xy = Language::Python.major_minor_version "python3"
-    ENV.prepend_create_path "PYTHONPATH",
-      "#{prefix}/lib/python#{xy}/site-packages"
     system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
   end
 
