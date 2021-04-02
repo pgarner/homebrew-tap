@@ -8,7 +8,10 @@ class Xnnpack < Formula
   depends_on "cmake" => :build
 
   def install
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    args = [
+      "-DCMAKE_POSITION_INDEPENDENT_CODE=1"
+    ]
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
