@@ -16,6 +16,9 @@ class Fairseq < Formula
   end
 
   def install
+    xy = Language::Python.major_minor_version "python3"
+    ENV.prepend_create_path "PYTHONPATH",
+      "#{HOMEBREW_PREFIX}/lib/python#{xy}/site-packages"
     system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
   end
 
