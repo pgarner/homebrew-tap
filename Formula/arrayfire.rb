@@ -21,24 +21,23 @@ class Arrayfire < Formula
   def install
     args = [
       "-DAF_BUILD_CPU=ON",
-      "-DAF_BUILD_OPENCL=OFF",
+      "-DAF_BUILD_OPENCL=ON",
       "-DUSE_CPU_MKL=ON",
+      "-DUSE_OPENCL_MKL=ON",
       "-DAF_BUILD_EXAMPLES=ON",
-      "-DAF_BUILD_DOCS=OFF",
       "-DCMAKE_STRIP=FALSE",
-      "-DCUDA_architecture_build_targets=3.7;6.1;7.0;7.5;8.6+PTX"
+      "-DAF_BUILD_DOCS=OFF"
     ]
     on_linux do
       args += [
         "-DAF_BUILD_CUDA=ON",
         "-DAF_WITH_CUDNN=ON",
+        "-DCUDA_architecture_build_targets=3.7;6.1;7.0;7.5;8.6+PTX"
       ]
     end
-
-    mkdir "build" do
-      system "cmake", "..", *std_cmake_args, *args
-      system "make", "install"
-    end
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
     pkgshare.install "examples"
   end
 
