@@ -7,7 +7,6 @@ class Pytorch < Formula
 
   depends_on "cmake" => :build
   depends_on "mkl"
-  depends_on "magma"
   depends_on "xnnpack"
 
   on_macos do
@@ -19,6 +18,7 @@ class Pytorch < Formula
     depends_on "cudnn@11.1"
     depends_on "nccl"
 #    depends_on "gloo"
+    depends_on "magma"
   end
 
   def install

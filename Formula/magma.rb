@@ -6,22 +6,23 @@ class Magma < Formula
   sha256 "7734fb417ae0c367b418dea15096aef2e278a423e527c615aab47f0683683b67"
   license "BSD"
 
+  # Magma actually requires *both* a CPU and GPU, hence cuda (or the AMD
+  # equivalent); so not MacOS for the moment
+
+  depends_on :linux
   depends_on "cmake" => :build
   depends_on "mkl"
-  on_linux do
-    depends_on "cuda@11.1"
-  end
+  depends_on "cuda11"
 
   def install
     ENV["MKLROOT"] = "#{HOMEBREW_PREFIX}"
-    mkdir "build" do
-      args = [
-        # CUDA 11 actually supports 3.5 upwards, but not 3.0
-        "-DGPU_TARGET=Maxwell Pascal Volta Turing Ampere"
-      ]
-      system "cmake", "..", *args, *std_cmake_args
-      system "make", "install"
-    end
+    args = [
+      # We actually want: 3.7;6.1;7.0;7.5;8.6+PTX
+      "-DGPU_TARGET=sm_35 sm_61 sm_70 sm_75 sm_80"
+    ]
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
