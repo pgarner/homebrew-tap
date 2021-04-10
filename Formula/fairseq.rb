@@ -15,6 +15,8 @@ class Fairseq < Formula
     depends_on "nccl"
   end
 
+  conflicts_with "espresso", because: "espresso has fairseq embedded"
+
   def install
     xy = Language::Python.major_minor_version "python3"
     ENV.prepend_create_path "PYTHONPATH",
