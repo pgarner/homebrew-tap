@@ -18,10 +18,14 @@ class Flashlight < Formula
   end
 
   def install
+    ENV["VERBOSE"] = "1"
     ENV["KENLM_ROOT"] = Formula["kenlm"].prefix
     args = []
     on_linux do
-      args << "-DFL_BACKEND=CUDA"
+      args += [
+        "-DFL_BACKEND=CUDA",
+        "-DCUDA_ARCH_LIST=3.7;6.1;7.0;7.5;8.6+PTX"
+      ]
     end
     on_macos do
       args << "-DFL_BACKEND=CPU"
