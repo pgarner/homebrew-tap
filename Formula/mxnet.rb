@@ -16,7 +16,6 @@ class Mxnet < Formula
   end
 
   def install
-    ENV.cxx14
     args = [
       "-DUSE_MKLDNN=1",
       "-DUSE_CPP_PACKAGE=1"
