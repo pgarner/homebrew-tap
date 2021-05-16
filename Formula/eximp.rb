@@ -1,13 +1,17 @@
 class Eximp < Formula
   desc "EXIF based photo importer"
   homepage "https://github.com/pgarner/eximp"
-  version "1.0"
+  version "1.0.1"
   url "https://github.com/pgarner/eximp.git", tag: "v#{version}"
+  head "https://github.com/pgarner/eximp.git"
   license "BSD-3-Clause"
 
   depends_on "cmake" => :build
   depends_on "lube"
-  depends_on "libexif"
+  on_macos do
+    depends_on "libexif"
+    # Also libheif, but it has lots of deps
+  end
 
   def install
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
