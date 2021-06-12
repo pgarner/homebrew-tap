@@ -3,7 +3,7 @@ class Vscode < Formula
   homepage "https://code.visualstudio.com/"
   version "1.56.2"
   url "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
-  sha256 "4fe506b12aa0043ec955d11388f34f5dee12e1cade7bfce654193cc7275cb0fd"
+  sha256 "7cc34e7405875f4f6e3237aed48fbd5a2f0c1907175040a4a409ebe757a07e8d"
   license "MIT"
 
   depends_on :linux
