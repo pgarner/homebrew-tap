@@ -7,6 +7,7 @@ class Flang < Formula
   license "Apache"
 
   depends_on "cmake" => :build
+  depends_on "llvm" => :build
 
   def install
     cd buildpath/"flang" do
