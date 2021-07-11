@@ -3,7 +3,8 @@ class Festvox < Formula
   homepage "http://festvox.org"
 #  version "2.7" # Festival 2.4
   version "2.8" # Festival 2.5.0
-  url "https://github.com/pgarner/homebrew-tap.git", revision: "bff5a40"
+  url "https://github.com/pgarner/homebrew-tap/archive/refs/tags/dummy.tar.gz"
+  sha256 "b1369ef1a145bd7a84e477e9290fdacaa42ea348a55bab6150b766e4342dc50d"
   license "Festvox"
 
   resource "speech_tools" do
