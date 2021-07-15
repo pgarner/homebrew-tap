@@ -1,6 +1,6 @@
 class Liblbfgs < Formula
   desc "C library of limited-memory BFGS (L-BFGS)"
-  homepage "https://github.com/chokkan/liblbfgs"
+  homepage "http://www.chokkan.org/software/liblbfgs/"
   url "https://github.com/chokkan/liblbfgs.git"
   version "2021-04"
   license "MIT"
