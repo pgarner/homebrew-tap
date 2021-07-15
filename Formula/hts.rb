@@ -8,7 +8,7 @@ class Hts < Formula
   sha256 "9fe2480f834a1b4c124abaef6fee423530a8a6de79015413f3ca1d1fdc7644de"
   license "HTK"
 
-  cache = "file:#{ENV["HOME"]}/src/homebrew-tap/cache"
+  cache = "file:#{HOMEBREW_LIBRARY}/Taps/pgarner/homebrew-tap/cache"
 
   resource "htk" do
     url "#{cache}/HTK-#{@@htkversion}.tar.gz"
