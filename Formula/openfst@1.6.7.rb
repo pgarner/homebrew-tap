@@ -9,13 +9,22 @@ class OpenfstAT167 < Formula
   keg_only :versioned_formula
 
   def install
-    system "./configure", "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}",
-                          "--enable-fsts",
-                          "--enable-compress",
-                          "--enable-grm",
-                          "--enable-special"
+    args = [
+      "--disable-dependency-tracking",
+      "--disable-silent-rules",
+      "--prefix=#{prefix}",
+      "--enable-fsts",
+      "--enable-compress",
+      "--enable-grm",
+      "--enable-special",
+
+      # For phonetisaurus
+      "--enable-static",
+      "--enable-shared",
+      "--enable-far",
+      "--enable-ngram-fsts"
+    ]
+    system "./configure", *args
     system "make"
     system "make", "install"
   end
