@@ -1,15 +1,15 @@
 class MklInclude < Formula
   desc "Intel Math Kernel Library"
   homepage "https://software.intel.com/en-us/mkl"
-  version "2021.1.1"
+  version "2021.3.0"
   license "ISSL"
 
   intel = "https://anaconda.org/intel"
 
   on_linux do
-    build = "intel_52"
+    build = "intel_520"
     url "#{intel}/mkl-include/#{version}/download/linux-64/mkl-include-#{version}-#{build}.tar.bz2"
-    sha256 "bb579d7b3d5e4ed1ca6b5efb94bf10ae24af75922282ba7c65856f94d1e81d8e"
+    sha256 "b0df7fb4c2071fdec87b567913715a2e47dca05e8c3ac4e5bcf072d7804085af"
   end
 
   on_macos do
