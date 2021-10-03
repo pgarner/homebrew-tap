@@ -1,8 +1,8 @@
 class Flashlight < Formula
   desc "Fast, Flexible Machine Learning in C++"
   homepage "https://github.com/facebookresearch/flashlight"
-  url "https://github.com/facebookresearch/flashlight.git", revision: "1061e17"
-  version "2021.03"
+  version "0.3"
+  url "https://github.com/facebookresearch/flashlight.git", tag: "v#{version}"
   license "BSD"
 
   depends_on "cmake" => :build

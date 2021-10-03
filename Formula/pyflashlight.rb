@@ -1,8 +1,8 @@
 class Pyflashlight < Formula
   desc "Python bindings for Flashlight"
   homepage "https://github.com/facebookresearch/flashlight/tree/master/bindings/python"
-  version "2021.01"
-  url "https://github.com/facebookresearch/flashlight.git", revision: "af35de8"
+  version "0.3"
+  url "https://github.com/facebookresearch/flashlight.git", tag: "v#{version}"
   license "BSD-3-Clause"
 
   depends_on "cmake" => :build

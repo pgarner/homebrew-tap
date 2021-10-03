@@ -1,9 +1,9 @@
 class Magma < Formula
   desc "Matrix Algebra on GPU and Multicore Architectures"
   homepage "https://icl.utk.edu/magma/index.html"
-  version "2.5.4"
+  version "2.6.1"
   url "http://icl.utk.edu/projectsfiles/magma/downloads/magma-#{version}.tar.gz"
-  sha256 "7734fb417ae0c367b418dea15096aef2e278a423e527c615aab47f0683683b67"
+  sha256 "6cd83808c6e8bc7a44028e05112b3ab4e579bcc73202ed14733f66661127e213"
   license "BSD"
 
   # Magma actually requires *both* a CPU and GPU, hence cuda (or the AMD
