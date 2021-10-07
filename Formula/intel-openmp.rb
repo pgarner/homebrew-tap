@@ -7,9 +7,9 @@ class IntelOpenmp < Formula
   intel = "https://anaconda.org/intel"
 
   on_linux do
-    build = "intel_189"
+    build = "intel_3350"
     url "#{intel}/intel-openmp/#{version}/download/linux-64/intel-openmp-#{version}-#{build}.tar.bz2"
-    sha256 "5bae057d52409dbc7d9544f45e0d085ea9a59234c3c78f41305b816035f4644a"
+    sha256 "db33da863e2031af388ddff6f8194fa5954a85993fa7e39a98fc91e92632cf67"
   end
 
   on_macos do
