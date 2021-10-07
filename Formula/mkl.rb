@@ -16,9 +16,9 @@ class Mkl < Formula
   end
 
   on_macos do
-    build = "intel_50"
+    build = "intel_517"
     url "#{intel}/mkl/#{version}/download/osx-64/mkl-#{version}-#{build}.tar.bz2"
-    sha256 "819fb8875909d4d024e2a936c54b561aebd1e3aebe58fc605c70aa1ad9a66b70"
+    sha256 "af4cb9716a780a5d222817dda9a7efeaef90177423593f42447fd9bf63ca9f13"
   end
 
   def install
