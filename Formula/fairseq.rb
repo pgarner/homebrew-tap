@@ -1,8 +1,9 @@
 class Fairseq < Formula
   desc "A sequence modeling toolkit"
   homepage "https://github.com/pytorch/fairseq"
-  version "0.10.2"
-  url "https://github.com/pytorch/fairseq.git", tag: "v#{version}"
+  version "2021.10"
+  url "https://github.com/pytorch/fairseq.git", revision: "dd3bd3c"
+  head "https://github.com/pytorch/fairseq"
   license "MIT"
 
   depends_on "pytorch"
@@ -21,6 +22,8 @@ class Fairseq < Formula
     xy = Language::Python.major_minor_version "python3"
     ENV.prepend_create_path "PYTHONPATH",
       "#{HOMEBREW_PREFIX}/lib/python#{xy}/site-packages"
+    system "pip3", "-v", "install", "--prefix", "#{prefix}",
+           "editdistance", "soundfile"
     system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
   end
 
