@@ -24,6 +24,7 @@ class Flashlight < Formula
     on_linux do
       args += [
         "-DFL_BACKEND=CUDA",
+        "-DFL_BUILD_APP_ASR=ON",
         "-DCUDA_ARCH_LIST=3.7;6.1;7.0;7.5;8.6+PTX"
       ]
     end
