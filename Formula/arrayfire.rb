@@ -15,13 +15,13 @@ class Arrayfire < Formula
   depends_on "mkl"
   on_linux do
     depends_on "cuda11"
-    depends_on "cudnn11"
+    depends_on "cudnn"
   end
 
   def install
     args = [
       "-DAF_BUILD_CPU=ON",
-      "-DAF_BUILD_OPENCL=ON",
+      "-DAF_BUILD_OPENCL=OFF",
       "-DUSE_CPU_MKL=ON",
       "-DUSE_OPENCL_MKL=ON",
       "-DAF_BUILD_EXAMPLES=ON",
