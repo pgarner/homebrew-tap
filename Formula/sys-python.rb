@@ -17,7 +17,7 @@ class SysPython < Formula
       # you can't use some system files, in this case /usr/include/pythonX.Y/*
       # So, fool it into thinking it's a local install.
       xy = Language::Python.major_minor_version("python3")
-      include.install_symlink "/usr/include/python#{xy}"
+      include.install_symlink Dir["/usr/include/python#{xy}/*"]
     end
   end
 
