@@ -22,6 +22,9 @@ class SysPython < Formula
       xy = Language::Python.major_minor_version("python3")
       include.install_symlink Dir["/usr/include/python#{xy}/*"]
     end
+
+    # This is an unpleasant hack
+    HOMEBREW_PREFIX.install "#{prefix}/pyvenv.cfg"
   end
 
   test do
