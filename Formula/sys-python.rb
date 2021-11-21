@@ -10,6 +10,9 @@ class SysPython < Formula
   def install
     # This is a perfectly reasonable hack
     virtualenv_create(prefix, "python3")
+    Dir.glob("#{prefix}/bin/pip*").each do |pip|
+      inreplace pip, /Cellar.*#{version}\//, ""
+    end
 
     on_linux do
       # This is a *horrible* hack
