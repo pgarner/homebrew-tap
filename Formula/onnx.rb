@@ -5,16 +5,14 @@ class Onnx < Formula
   url "https://github.com/onnx/onnx.git", tag: "v#{version}"
   license "Apache-2.0"
 
-  on_macos do
-    uses_from_macos "python@3"
-  end
+  depends_on "python3"
+  depends_on "pybind11"
+  depends_on "pgarner/tap/numpy"
+  depends_on "protobuf"
+  depends_on "six"
 
   def install
-    # Find the things that pip installs as deps before they get linked
-    xy = Language::Python.major_minor_version "python3"
-    ENV.prepend_create_path "PYTHONPATH",
-      "#{prefix}/lib/python#{xy}/site-packages"
-
+    ENV["CMAKE_ARGS"] = "-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
     system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
   end
 
