@@ -7,13 +7,18 @@ class Numpy < Formula
   license "BSD-3-Clause"
   head "https://github.com/numpy/numpy.git", branch: "main"
 
+  depends_on "cython" => :build
+  depends_on "python3"
   depends_on "mkl"
-  depends_on "sys-python"
 
   def install
     ENV["ATLAS"] = "None" # avoid linking against Accelerate.framework
     ENV["MKLROOT"] = HOMEBREW_PREFIX
     ENV["VERBOSE"] = "1"
+
+    xy = Language::Python.major_minor_version Formula["python3"].opt_bin/"python3"
+    ENV.prepend_create_path "PYTHONPATH", Formula["cython"].opt_libexec/"lib/python#{xy}/site-packages"
+
     system "python3", "setup.py", "build",
            "--fcompiler=gfortran", "--parallel=#{ENV.make_jobs}"
     system "python3", *Language::Python.setup_install_args(prefix)

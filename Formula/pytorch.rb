@@ -6,10 +6,12 @@ class Pytorch < Formula
   license "BSD-3-Clause"
 
   depends_on "cmake" => :build
+  depends_on "python3"
+  depends_on "pgarner/tap/numpy"
   depends_on "mkl"
   depends_on "xnnpack"
-  depends_on "sys-python"
   depends_on "protobuf"
+  depends_on "pybind11"
 
   on_macos do
     uses_from_macos "python@3"
@@ -34,6 +36,7 @@ class Pytorch < Formula
     ENV["USE_SYSTEM_EIGEN_INSTALL"] = "1"
     ENV["USE_SYSTEM_XNNPACK"] = "1"
     ENV["BUILD_CUSTOM_PROTOBUF"] = "0"
+    ENV["USE_SYSTEM_PYBIND11"] = "1"
 
     # Find the things that pip installs as deps before they get linked
     xy = Language::Python.major_minor_version "python3"
@@ -47,7 +50,9 @@ class Pytorch < Formula
     ENV["TORCH_CUDA_ARCH_LIST"] = "3.7;6.1;7.0;7.5;8.6+PTX"
     ENV["NCCL_LIB_DIR"] = Formula["nccl"].lib
     ENV["NCCL_INCLUDE_DIR"] = Formula["nccl"].include
-    system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
+    system "pip3", "-v", "install", "--prefix", "#{prefix}",
+           "pyyaml", "typing_extensions"
+    system "python3", *Language::Python.setup_install_args(prefix)
   end
 
   test do
