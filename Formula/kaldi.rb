@@ -1,8 +1,8 @@
 class Kaldi < Formula
   desc "Kaldi ASR"
   homepage "https://kaldi-asr.org/"
-  version "2021.02"
-  url "https://github.com/kaldi-asr/kaldi.git", revision: "d619890"
+  version "2021.11"
+  url "https://github.com/kaldi-asr/kaldi.git", revision: "6e03a3f5"
   head "https://github.com/kaldi-asr/kaldi"
   license "Apache"
 
@@ -11,7 +11,7 @@ class Kaldi < Formula
   depends_on "openfst@1.6.7"
   depends_on "mkl"
   on_linux do
-    depends_on "cuda@11.1"
+    depends_on "cuda"
   end
 
   def install
@@ -28,7 +28,7 @@ class Kaldi < Formula
         # "--shared", # May break an "install"
       ]
       on_linux do
-        confargs << "--cudatk-dir=#{Formula["cuda@11.1"].prefix}"
+        confargs << "--cudatk-dir=#{Formula["cuda"].prefix}"
       end
       on_macos do
         confargs << "--use-cuda=no"
@@ -45,12 +45,11 @@ class Kaldi < Formula
     prefix.install "egs"
     prefix.install "tools"
 
-    # Hacks to make the tools work; the resulting links are relative
-    mkdir prefix/"tools/sctk" do
-      ln_s "#{HOMEBREW_PREFIX}/bin", "bin"
-    end
-    mkdir prefix/"tools/sph2pipe_v2.5" do
-      ln_s "#{HOMEBREW_PREFIX}/bin/sph2pipe", "sph2pipe"
+    # Links to make the tools work; they are relative
+    cd prefix/"tools" do
+      ln_s Formula["sph2pipe"].prefix, "sph2pipe"
+      ln_s Formula["sctk"].prefix, "sctk"
+      ln_s Formula["openfst@1.6.7"].prefix, "openfst"
     end
   end
 
