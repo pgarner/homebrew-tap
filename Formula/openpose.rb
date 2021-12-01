@@ -11,14 +11,16 @@ class Openpose < Formula
   depends_on "glog"
   depends_on "gflags"
   depends_on "protobuf"
-  depends_on "cuda@11.1"
-  depends_on "cudnn@11.1"
+  depends_on "cuda"
+  depends_on "cudnn"
 
   def install
     ENV.cxx11
     args = [
       "-DUSE_MKL=ON",
-      "-DCUDA_ARCH=All"
+      "-DCUDA_ARCH=Manual",
+      "-DCUDA_ARCH_BIN=37 61 70 75 86",
+      "-DCUDA_ARCH_PTX=86"
     ]
     # In-place build makes it easier to install compiled examples
     system "cmake", ".", *std_cmake_args, *args
