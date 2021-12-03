@@ -13,10 +13,6 @@ class Pytorch < Formula
   depends_on "protobuf"
   depends_on "pybind11"
 
-  on_macos do
-    uses_from_macos "python@3"
-  end
-
   on_linux do
     depends_on "cuda"
     depends_on "cudnn"
@@ -50,8 +46,12 @@ class Pytorch < Formula
     ENV["TORCH_CUDA_ARCH_LIST"] = "3.7;6.1;7.0;7.5;8.6+PTX"
     ENV["NCCL_LIB_DIR"] = Formula["nccl"].lib
     ENV["NCCL_INCLUDE_DIR"] = Formula["nccl"].include
-    system "pip3", "-v", "install", "--prefix", "#{prefix}",
-           "pyyaml", "typing_extensions"
+
+    deps = [
+      "pyyaml",
+      "typing_extensions"
+    ]
+    system "pip3", "-v", "install", "--prefix", "#{prefix}", *deps
     system "python3", *Language::Python.setup_install_args(prefix)
   end
 

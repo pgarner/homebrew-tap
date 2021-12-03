@@ -6,25 +6,25 @@ class Fairseq < Formula
   head "https://github.com/pytorch/fairseq"
   license "MIT"
 
+  depends_on "python3"
+  depends_on "pgarner/tap/numpy"
   depends_on "pytorch"
 
-  on_macos do
-    uses_from_macos "python@3"
-  end
-
   on_linux do
+    depends_on "cuda"
     depends_on "nccl"
   end
 
   conflicts_with "espresso", because: "espresso has fairseq embedded"
 
   def install
-    xy = Language::Python.major_minor_version "python3"
-    ENV.prepend_create_path "PYTHONPATH",
-      "#{HOMEBREW_PREFIX}/lib/python#{xy}/site-packages"
-    system "pip3", "-v", "install", "--prefix", "#{prefix}",
-           "editdistance", "soundfile"
-    system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
+    ENV["VERBOSE"] = "1"
+    deps = [
+      "editdistance",
+      "soundfile"
+    ]
+    system "pip3", "-v", "install", "--prefix", "#{prefix}", *deps
+    system "python3", *Language::Python.setup_install_args(prefix)
   end
 
   test do
