@@ -18,9 +18,11 @@ class Torchaudio < Formula
   def install
     ENV["BUILD_SOX"] = "OFF"
     ENV["BUILD_KALDI"] = "OFF"
-    ENV["USE_CUDA"] = "ON"
     ENV["USE_OPENMP"] = "ON"
-    ENV["TORCH_CUDA_ARCH_LIST"] = "3.7;6.1;7.0;7.5;8.6+PTX"
+    on_linux do
+      ENV["USE_CUDA"] = "ON"
+      ENV["TORCH_CUDA_ARCH_LIST"] = "3.7;6.1;7.0;7.5;8.6+PTX"
+    end
 
     system "python3", *Language::Python.setup_install_args(prefix)    
   end
