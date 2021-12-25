@@ -15,7 +15,7 @@ class IntelOpenmp < Formula
   on_macos do
     build = "intel_3538"
     url "#{intel}/intel-openmp/#{version}/download/osx-64/intel-openmp-#{version}-#{build}.tar.bz2"
-    sha256 "3d3dd340e204d7154829137344fa8c581c3e8cd44be7fbb6484215e76d39b190"
+    sha256 "71b365cd2984cfc55d7af097a0b1e933969a101305ac5b8f2d69e535ed18b1a7"
   end
 
   def install
