@@ -1,17 +1,15 @@
 class Sptk < Formula
   desc "Speech Signal Processing Toolkit"
-  homepage "http://sp-tk.sourceforge.net"
-  url "http://downloads.sourceforge.net/sp-tk/SPTK-3.11.tar.gz"
-  version "3.11"
-  sha256 "ae26929a3c196ca8a1d1a638718fc4400adf8ce963b8328be72f8802f1589100"
-  license "Modified-BSD"
+  homepage "https://github.com/sp-nitech/SPTK"
+  version "4.0"
+  url "https://github.com/sp-nitech/SPTK/archive/refs/tags/v#{version}.tar.gz"
+  sha256 "2defd24b1f0b7e857b046d1bba390bbafddcca517a816de633640cb4b5b9f871"
+  license "Apache-2.0"
 
   def install
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
-    system "make", "install"
+    system "cmake", ".", *std_cmake_args
+    system "cmake", "--build", "."
+    system "cmake", "--install", "."
   end
 
   test do
