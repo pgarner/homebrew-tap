@@ -6,6 +6,8 @@ class Sptk < Formula
   sha256 "2defd24b1f0b7e857b046d1bba390bbafddcca517a816de633640cb4b5b9f871"
   license "Apache-2.0"
 
+  depends_on "cmake" => :build
+
   def install
     system "cmake", ".", *std_cmake_args
     system "cmake", "--build", "."
