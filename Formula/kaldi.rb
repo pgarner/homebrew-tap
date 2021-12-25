@@ -14,10 +14,12 @@ class Kaldi < Formula
     depends_on "cuda"
   end
 
+  patch :DATA
+
   def install
     on_linux do
       cd buildpath/"tools" do
-        system "make", "cub"
+        ln_s Formula["cuda"].include, "cub"
       end
     end
     cd buildpath/"src" do
@@ -57,3 +59,20 @@ class Kaldi < Formula
     system "false"
   end
 end
+
+__END__
+diff --git a/src/configure b/src/configure
+index 5f57cdfad..b02d02411 100755
+--- a/src/configure
++++ b/src/configure
+@@ -319,8 +319,8 @@ Either your CUDA is too new or too old."
+           CUSOLVER=true
+         ;;
+         11_*)
+-          MIN_UNSUPPORTED_GCC_VER="10.0"
+-          MIN_UNSUPPORTED_GCC_VER_NUM=100000;
++          MIN_UNSUPPORTED_GCC_VER="11.0"
++          MIN_UNSUPPORTED_GCC_VER_NUM=110000;
+           CUSOLVER=true
+         ;;
+         *)
