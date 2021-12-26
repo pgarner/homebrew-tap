@@ -13,6 +13,9 @@ class Kaldi < Formula
   on_linux do
     depends_on "cuda"
   end
+  on_macos do
+    depends_on "wget" # To fetch portaudio
+  end
 
   patch :DATA
 
