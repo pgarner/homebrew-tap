@@ -1,7 +1,7 @@
 class Mxnet < Formula
   desc "Lightweight, Portable, Flexible Distributed/Mobile Deep Learning"
   homepage "https://mxnet.apache.org/"
-  version "1.9.0"
+  version "v2.0.0.beta0.rc1"
   url "https://github.com/apache/incubator-mxnet.git", tag: "#{version}"
   head "https://github.com/apache/incubator-mxnet"
   license "Apache"
@@ -11,14 +11,13 @@ class Mxnet < Formula
   on_linux do
     depends_on "cuda"
     depends_on "cudnn"
+    depends_on "cutensor"
     depends_on "nccl"
   end
 
   def install
-    rm_r "3rdparty/openmp"
-    rm_r "3rdparty/nvidia_cub"
     args = [
-      "-DUSE_MKLDNN=1",
+      "-DUSE_ONEDNN=1",
       "-DUSE_CPP_PACKAGE=1",
       "-DBUILD_CPP_EXAMPLES=0"
     ]
