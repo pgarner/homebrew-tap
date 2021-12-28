@@ -1,7 +1,7 @@
 class Pytorch < Formula
   desc "Tensor and DNN library"
   homepage "https://pytorch.org/"
-  version "1.10.0"
+  version "1.10.1"
   url "https://github.com/pytorch/pytorch.git", tag: "v#{version}"
   license "BSD-3-Clause"
 
