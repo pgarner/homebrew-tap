@@ -14,11 +14,14 @@ class Magma < Formula
   depends_on "mkl"
   depends_on "cuda11"
 
+  # Patch is taken from Arch Linux
+  patch :DATA
+
   def install
     ENV["MKLROOT"] = "#{HOMEBREW_PREFIX}"
     args = [
       # We actually want: 3.7;6.1;7.0;7.5;8.6+PTX
-      "-DGPU_TARGET=sm_35 sm_61 sm_70 sm_75 sm_80"
+      "-DGPU_TARGET=sm_35 sm_61 sm_70 sm_75 sm_80 sm_86"
     ]
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
     system "cmake", "--build", "build"
@@ -29,3 +32,24 @@ class Magma < Formula
     system "false"
   end
 end
+
+__END__
+diff --color -aur magma-2.6.1-old/CMakeLists.txt magma-2.6.1-new/CMakeLists.txt
+--- magma-2.6.1-old/CMakeLists.txt      2021-07-13 01:35:20.000000000 +0300
++++ magma-2.6.1-new/CMakeLists.txt      2021-07-21 11:02:28.014236200 +0300
+@@ -294,6 +294,15 @@
+         message( STATUS "    compile for CUDA arch 8.0 (Ampere)" )
+     endif()
+ 
++    if (GPU_TARGET MATCHES sm_86)
++        if (NOT MIN_ARCH)
++            set( MIN_ARCH 860 )
++        endif()
++        set( NV_SM ${NV_SM} -gencode arch=compute_86,code=sm_86 )
++        set( NV_COMP        -gencode arch=compute_86,code=compute_86 )
++        message( STATUS "    compile for CUDA arch 8.6 (Ampere)" )
++    endif()
++
+     if (NOT MIN_ARCH)
+         message( FATAL_ERROR "GPU_TARGET must contain one or more of Fermi, Kepler, Maxwell, Pascal, Volta, Turing, Ampere, or valid sm_[0-9][0-9]" )
+     endif()
