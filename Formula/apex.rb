@@ -9,7 +9,6 @@ class Apex < Formula
   depends_on "pytorch"
 
   def install
-    xy = Language::Python.major_minor_version "python3"
     ENV["TORCH_CUDA_ARCH_LIST"] = "3.5;3.7;6.1;7.0;7.5;8.6+PTX"
     args = %W[
       -v
