@@ -1,9 +1,9 @@
 class LocalLib < Formula
   desc "Create and use a local lib/ for perl modules with PERL5LIB"
   homepage "https://github.com/Perl-Toolchain-Gang/local-lib"
-  version "2.000_025"
+  version "2.000028"
   url "https://github.com/Perl-Toolchain-Gang/local-lib/archive/refs/tags/v#{version}.tar.gz"
-  sha256 "ec1c854178157f8fcd87d6bdb9f9f623650270e3ed7d6604443225a82aca818d"
+  sha256 "642e45981e29342aa7e2394a10c8575a1837aff5d2fd15ab92fe57fa494f3d34"
   head "https://github.com/Perl-Toolchain-Gang/local-lib.git"
   license "Perl5"
 
