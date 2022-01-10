@@ -6,6 +6,7 @@ class Pyflashlight < Formula
   license "BSD-3-Clause"
 
   depends_on "cmake" => :build
+  depends_on "python3"
   depends_on "mkl"
   depends_on "kenlm"
   depends_on "pytorch"
@@ -16,6 +17,13 @@ class Pyflashlight < Formula
 
   def install
     ENV["VERBOSE"] = "1"
+    xy = Language::Python.major_minor_version "python3"
+    ENV.prepend_create_path "PYTHONPATH",
+      "#{prefix}/lib/python#{xy}/site-packages"
+    deps = [
+      "packaging"
+    ]
+    system "pip3", "-v", "install", "--prefix", "#{prefix}", *deps
     cd buildpath/"bindings/python" do
       system "python3", *Language::Python.setup_install_args(prefix)
     end

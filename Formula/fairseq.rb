@@ -6,6 +6,7 @@ class Fairseq < Formula
   head "https://github.com/pytorch/fairseq"
   license "MIT"
 
+  depends_on "ninja" => :build
   depends_on "python3"
   depends_on "pgarner/tap/numpy"
   depends_on "pytorch"
@@ -19,7 +20,14 @@ class Fairseq < Formula
 
   def install
     ENV["VERBOSE"] = "1"
+
+    # Not necessary if cython is already installed globally
+    xy = Language::Python.major_minor_version "python3"
+    ENV.prepend_create_path "PYTHONPATH",
+      "#{prefix}/lib/python#{xy}/site-packages"
+
     deps = [
+      "cython",
       "editdistance",
       "soundfile"
     ]
