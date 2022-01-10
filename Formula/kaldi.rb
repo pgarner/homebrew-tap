@@ -29,7 +29,7 @@ class Kaldi < Formula
       confargs = [
         "--fst-root=#{Formula["openfst@1.6.7"].prefix}",
         "--fst-version=1.6.7",
-        "--mkl-root=#{HOMEBREW_PREFIX}"
+        "--mkl-root=#{Formula["mkl"].prefix}"
         # "--shared", # May break an "install"
       ]
       on_linux do
