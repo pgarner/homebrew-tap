@@ -29,7 +29,13 @@ class Fairseq < Formula
     deps = [
       "cython",
       "editdistance",
-      "soundfile"
+      "soundfile",
+      "bitarray",
+      "tqdm",
+      "hydra-core",
+      "omegaconf<2.1",
+      "regex",
+      "sacrebleu"
     ]
     system "pip3", "-v", "install", "--prefix", "#{prefix}", *deps
     system "python3", *Language::Python.setup_install_args(prefix)
