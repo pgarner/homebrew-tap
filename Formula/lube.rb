@@ -9,11 +9,11 @@ class Lube < Formula
 
   on_macos do
     depends_on "boost"
+    depends_on "libsndfile"
   end
 
   depends_on "cmake" => :build
   depends_on "mkl"
-  depends_on "libsndfile"
 
   def install
     system "cmake", ".",
