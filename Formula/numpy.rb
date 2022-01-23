@@ -19,8 +19,13 @@ class Numpy < Formula
     xy = Language::Python.major_minor_version Formula["python3"].opt_bin/"python3"
     ENV.prepend_create_path "PYTHONPATH", Formula["cython"].opt_libexec/"lib/python#{xy}/site-packages"
 
-    system "python3", "setup.py", "build",
-           "--fcompiler=gfortran", "--parallel=#{ENV.make_jobs}"
+    on_linux do
+      system "python3", "setup.py", "build",
+             "--fcompiler=gfortran", "--parallel=#{ENV.make_jobs}"
+    end
+    on_macos do
+      system "python3", "setup.py", "build", "--parallel=#{ENV.make_jobs}"
+    end
     system "python3", *Language::Python.setup_install_args(prefix)
   end
 
