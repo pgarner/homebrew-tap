@@ -2,8 +2,8 @@ class Torchaudio < Formula
   desc "An audio library for PyTorch"
   homepage "https://pytorch.org/audio/stable/index.html"
   version "0.10.0"
-  url "https://github.com/pytorch/audio/archive/refs/tags/v#{version}.tar.gz"
-  sha256 "9d0413434eefd2a483bf4006440c02940d15e597ab75703aa3ae2c6d5297e7ad"
+  url "https://github.com/pytorch/audio.git", tag: "v#{version}"
+  head "https://github.com/pytorch/audio.git"
   license "BSD-2-Clause"
 
   depends_on "cmake" => :build
@@ -16,8 +16,6 @@ class Torchaudio < Formula
   end
 
   def install
-    ENV["BUILD_SOX"] = "OFF"
-    ENV["BUILD_KALDI"] = "OFF"
     ENV["USE_OPENMP"] = "ON"
     on_linux do
       ENV["USE_CUDA"] = "ON"
