@@ -1,12 +1,10 @@
 class Kenlm < Formula
   desc "KenLM Language Model Toolkit"
-  homepage "KenLM Language Model Toolkit"
+  homepage "https://kheafield.com/code/kenlm/"
   url "https://kheafield.com/code/kenlm.tar.gz"
-  version "2020.10" # Last date in the tar file
-  sha256 "0a10fb9612a9f53716bf929231ce16b8cd65c09c34fad23e6d65cf04dff3e47c"
+  version "2022.02" # Last date in the tar file
+  sha256 "6bb66b6c17f6d23907bd6258ee585328b3e5f5f2b201d41c5f6bd0c390c2c913"
   license "LGPL"
-
-  keg_only "SPTK also installs interpolate"
 
   depends_on "cmake" => :build
   on_macos do
