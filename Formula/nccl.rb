@@ -1,25 +1,26 @@
 class Nccl < Formula
   desc "NVIDIA Collective Communication Library"
   homepage "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
-  version "2.11.4-1"
+  version "2.12.7-1"
   url "https://github.com/NVIDIA/nccl/archive/v#{version}.tar.gz"
-  head "https://github.com/NVIDIA/nccl"
-  sha256 "db4e9a0277a64f9a31ea9b5eea22e63f10faaed36dded4587bbc8a0d8eceed10"
+  head "https://github.com/NVIDIA/nccl.git"
+  sha256 "928d02e61637128f53320a89088c9c2e597fe9d25548dfaf06238bf5a87420fd"
   license "NVidia"
 
   depends_on :linux
-  depends_on "cuda11"
+  depends_on "cuda"
 
   def install
     gencode = [
-      "-gencode=arch=compute_35,code=sm_35",
+      "-gencode=arch=compute_37,code=sm_37",
       "-gencode=arch=compute_61,code=sm_61",
       "-gencode=arch=compute_70,code=sm_70",
-      "-gencode=arch=compute_80,code=sm_80",
-      "-gencode=arch=compute_80,code=compute_80"
+      "-gencode=arch=compute_75,code=sm_75",
+      "-gencode=arch=compute_86,code=sm_86",
+      "-gencode=arch=compute_86,code=compute_86"
     ].join(" ")
     system "make", "src.build",
-           "CUDA_HOME=#{Formula["cuda11"].prefix}",
+           "CUDA_HOME=#{Formula["cuda"].prefix}",
            "NVCC_GENCODE=#{gencode}"
 
     include.install Dir["build/include/*"]
