@@ -1,8 +1,9 @@
 class Onnx < Formula
   desc "Open Neural Network Exchange"
   homepage "https://onnx.ai/"
-  version "1.10.2"
+  version "1.11.0"
   url "https://github.com/onnx/onnx.git", tag: "v#{version}"
+  head "https://github.com/onnx/onnx.git"
   license "Apache-2.0"
 
   depends_on "python3"
@@ -12,8 +13,8 @@ class Onnx < Formula
   depends_on "six"
 
   def install
-    ENV["CMAKE_ARGS"] = "-DONNX_USE_PROTOBUF_SHARED_LIBS=ON"
-    system "pip3", "-v", "install", "--prefix", "#{prefix}", "."
+    ENV["CMAKE_ARGS"] = "-DONNX_USE_LITE_PROTO=ON"
+    system "python3", *Language::Python.setup_install_args(prefix)
   end
 
   test do
