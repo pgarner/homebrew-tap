@@ -1,36 +1,38 @@
 class Numpy < Formula
-  desc "Package for scientific computing with Python, built against MKL"
+  desc "Package for scientific computing with Python"
   homepage "https://www.numpy.org/"
-  version "1.21.4"
-  url "https://github.com/numpy/numpy/archive/refs/tags/v#{version}.tar.gz"
-  sha256 "59a157443cfdb9d2576a14833ca1c1c9ef96fc091955a9b6829464df39501d8c"
+  url "https://files.pythonhosted.org/packages/64/4a/b008d1f8a7b9f5206ecf70a53f84e654707e7616a771d84c05151a4713e9/numpy-1.22.3.zip"
+  sha256 "dbc7601a3b7472d559dc7b933b18b4b66f9aa7452c120e87dfb33d02008c8a18"
   license "BSD-3-Clause"
   head "https://github.com/numpy/numpy.git", branch: "main"
 
   depends_on "cython" => :build
-  depends_on "python3"
   depends_on "mkl"
+  depends_on "python3"
+
+  fails_with gcc: "5"
 
   def install
     ENV["ATLAS"] = "None" # avoid linking against Accelerate.framework
-    ENV["MKLROOT"] = HOMEBREW_PREFIX
+    ENV["MKLROOT"] = Formula["mkl"].opt_prefix
     ENV["VERBOSE"] = "1"
 
     xy = Language::Python.major_minor_version Formula["python3"].opt_bin/"python3"
     ENV.prepend_create_path "PYTHONPATH", Formula["cython"].opt_libexec/"lib/python#{xy}/site-packages"
 
     on_linux do
-      system "python3", "setup.py", "build",
-             "--fcompiler=gfortran", "--parallel=#{ENV.make_jobs}"
+      system Formula["python3"].opt_bin/"python3", "setup.py", "build",
+             "--fcompiler=#{Formula["gcc"].opt_bin}/gfortran", "--parallel=#{ENV.make_jobs}"
     end
     on_macos do
-      system "python3", "setup.py", "build", "--parallel=#{ENV.make_jobs}"
+      system Formula["python3"].opt_bin/"python3", "setup.py", "build",
+             "--parallel=#{ENV.make_jobs}"
     end
-    system "python3", *Language::Python.setup_install_args(prefix)
+    system Formula["python3"].opt_bin/"python3", *Language::Python.setup_install_args(prefix)
   end
 
   test do
-    system "python3", "-c", <<~EOS
+    system Formula["python3"].opt_bin/"python3", "-c", <<~EOS
       import numpy as np
       t = np.ones((3,3), int)
       assert t.sum() == 9
