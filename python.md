@@ -1,8 +1,10 @@
 # Python
 
+## The interpreter
+
 One of the design goals of this tap in general is to not duplicate things that might reasonably be expected to be on the OS already.  So, notably the compilers.  In principle, this includes python.  However, this turns out to be quite difficult.
 
-It is possible to simply not put any python dependency in a recipe.  Brew will build against the installed python and link files into its own `site-packages`.  Two workarounds are necessary:
+It is possible simply to not put any python dependency in a recipe.  Brew will build against the installed python and link files into its own `site-packages`.  Two workarounds are necessary:
 1. Brew's shims will inhibit access to `/usr/include/python3.x`.  The formula `sys-python` will install symbolic links to this directory.
 2. It is necessary to point `$PYTHON_PATH` at `$HOMEBREW_PREFIX/lib/python3.x/site-packages`
 
@@ -34,4 +36,12 @@ It's not a huge overhead in context; normally python is a big package, but not c
 3921080	cudnn@8.2
 5148336	cuda@11.3
 ...
+```
+
+## Cython & numpy
+
+Brew has a `cython` package, but it is keg-only; it is not normally visible even to brew's python interpreter.  If a formula depends on cython, it has to bring it in to the environment; that's what this mess is in `numpy.rb`:
+```python
+    xy = Language::Python.major_minor_version Formula["python@3.9"].opt_bin/"python3"
+    ENV.prepend_create_path "PYTHONPATH", Formula["cython"].opt_libexec/"lib/python#{xy}/site-packages"
 ```
