@@ -10,7 +10,7 @@ class Kaldi < Formula
   depends_on "sctk"
   depends_on "openfst@1.6.7"
   depends_on "mkl"
-  on_linux do
+  if Formula["cuda"].optlinked? then
     depends_on "cuda"
   end
   on_macos do
@@ -20,7 +20,8 @@ class Kaldi < Formula
   patch :DATA
 
   def install
-    on_linux do
+    cuda = Formula["cuda"].optlinked?
+    if cuda then
       cd buildpath/"tools" do
         ln_s Formula["cuda"].include, "cub"
       end
@@ -32,10 +33,9 @@ class Kaldi < Formula
         "--mkl-root=#{Formula["mkl"].prefix}"
         # "--shared", # May break an "install"
       ]
-      on_linux do
+      if cuda then
         confargs << "--cudatk-dir=#{Formula["cuda"].prefix}"
-      end
-      on_macos do
+      else
         confargs << "--use-cuda=no"
       end
       system "bash", "configure", *confargs
