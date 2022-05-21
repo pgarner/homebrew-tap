@@ -14,7 +14,7 @@ class Pytorch < Formula
   depends_on "protobuf"
   depends_on "pybind11"
 
-  on_linux do
+  if Formula["cuda"].optlinked? then
     depends_on "cuda"
     depends_on "cudnn"
     depends_on "nccl"
