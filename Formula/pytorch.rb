@@ -1,11 +1,12 @@
 class Pytorch < Formula
   desc "Tensor and DNN library"
   homepage "https://pytorch.org/"
-  version "1.10.1"
+  version "1.11.0"
   url "https://github.com/pytorch/pytorch.git", tag: "v#{version}"
   license "BSD-3-Clause"
 
   depends_on "cmake" => :build
+  depends_on "ninja" => :build
   depends_on "python3"
   depends_on "pgarner/tap/numpy"
   depends_on "mkl"
@@ -22,8 +23,7 @@ class Pytorch < Formula
   end
 
   def install
-    # Inhibit Caffe2
-    ENV["BUILD_CAFFE2"] = "0"
+    # Inhibit some things
     ENV["BUILD_TEST"] = "0"
 
     # Try to use the system version of some things (see CMakeLists.txt)
