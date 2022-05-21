@@ -3,7 +3,7 @@ class Fairseq < Formula
   homepage "https://github.com/pytorch/fairseq"
   version "2021.10"
   url "https://github.com/pytorch/fairseq.git", revision: "dd3bd3c"
-  head "https://github.com/pytorch/fairseq"
+  head "https://github.com/pytorch/fairseq.git"
   license "MIT"
 
   depends_on "ninja" => :build
