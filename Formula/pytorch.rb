@@ -27,8 +27,10 @@ class Pytorch < Formula
     ENV["BUILD_TEST"] = "0"
 
     # Try to use the system version of some things (see CMakeLists.txt)
-    ENV["USE_SYSTEM_NCCL"] = "1"
-    ENV["USE_SYSTEM_GLOO"] = "1"
+    if Formula["cuda"].optlinked? then
+      ENV["USE_SYSTEM_NCCL"] = "1"
+      ENV["USE_SYSTEM_GLOO"] = "1"
+    end
     ENV["USE_SYSTEM_EIGEN_INSTALL"] = "1"
     ENV["USE_SYSTEM_XNNPACK"] = "1"
     ENV["BUILD_CUSTOM_PROTOBUF"] = "0"
@@ -41,12 +43,13 @@ class Pytorch < Formula
 
     # Some clues about core libraries
     ENV["INTEL_MKL_DIR"] = "#{HOMEBREW_PREFIX}"
-    ENV["CUDNN_LIB_DIR"] = Formula["cudnn"].lib
-    ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
-    ENV["TORCH_CUDA_ARCH_LIST"] = "3.7;6.1;7.0;7.5;8.6+PTX"
-    ENV["NCCL_LIB_DIR"] = Formula["nccl"].lib
-    ENV["NCCL_INCLUDE_DIR"] = Formula["nccl"].include
-
+    if Formula["cuda"].optlinked? then
+      ENV["CUDNN_LIB_DIR"] = Formula["cudnn"].lib
+      ENV["CUDNN_INCLUDE_DIR"] = Formula["cudnn"].include
+      ENV["TORCH_CUDA_ARCH_LIST"] = "3.7;6.1;7.0;7.5;8.6+PTX"
+      ENV["NCCL_LIB_DIR"] = Formula["nccl"].lib
+      ENV["NCCL_INCLUDE_DIR"] = Formula["nccl"].include
+    end
     deps = [
       "pyyaml",
       "typing_extensions"
