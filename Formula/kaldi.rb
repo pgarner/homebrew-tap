@@ -1,8 +1,8 @@
 class Kaldi < Formula
   desc "Kaldi ASR"
   homepage "https://kaldi-asr.org/"
-  version "2021.11"
-  url "https://github.com/kaldi-asr/kaldi.git", revision: "6e03a3f5"
+  version "2022.04"
+  url "https://github.com/kaldi-asr/kaldi.git", revision: "6e633c9a"
   head "https://github.com/kaldi-asr/kaldi"
   license "Apache"
 
