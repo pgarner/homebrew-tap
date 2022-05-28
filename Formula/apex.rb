@@ -1,8 +1,8 @@
 class Apex < Formula
   desc "Utilities to streamline mixed precision and distributed training"
   homepage "https://nvidia.github.io/apex/"
-  url "https://github.com/NVIDIA/apex.git", revision: "e2083df"
-  version "2021.02"
+  url "https://github.com/NVIDIA/apex.git", revision: "ab5fc48"
+  version "2022.05"
   license "BSD-3-Clause"
 
   depends_on "cuda"
