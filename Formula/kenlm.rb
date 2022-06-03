@@ -13,8 +13,8 @@ class Kenlm < Formula
 
   def install
     args = [
-      "-DKENLM_MAX_ORDER=20",
-      "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+#      "-DKENLM_MAX_ORDER=20",
+#      "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
     ]
     system "cmake", ".", *std_cmake_args, *args
     system "cmake", "--build", "."
