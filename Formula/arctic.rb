@@ -120,12 +120,12 @@ class Arctic < Formula
     ]
     orig = ["bdl", "jmk", "slt"]
     pack.each do |spk|
-      resource(spk).stage share/spk
+      resource(spk).stage pkgshare/spk
     end
     orig.each do |spk|
-      resource("orig.#{spk}").stage share/spk
+      resource("orig.#{spk}").stage pkgshare/spk
     end    
-    share.install "cmuarctic.data"
+    pkgshare.install "cmuarctic.data"
   end
 
   test do
