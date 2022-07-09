@@ -1,17 +1,18 @@
 class Fairseq < Formula
   desc "A sequence modeling toolkit"
   homepage "https://github.com/pytorch/fairseq"
-  version "2021.10"
-  url "https://github.com/pytorch/fairseq.git", revision: "dd3bd3c"
+  version "0.12.2"
+  url "https://github.com/pytorch/fairseq.git", tag: "v#{version}"
   head "https://github.com/pytorch/fairseq.git"
   license "MIT"
 
-  depends_on "ninja" => :build
+  on_macos do
+    depends_on "ninja"  => :build
+  end
   depends_on "python3"
   depends_on "pgarner/tap/numpy"
-  depends_on "pytorch"
 
-  on_linux do
+  if Formula["cuda"].optlinked? then
     depends_on "cuda"
     depends_on "nccl"
   end
