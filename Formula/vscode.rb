@@ -1,9 +1,9 @@
 class Vscode < Formula
   desc "Visual Studio Code"
   homepage "https://code.visualstudio.com/"
-  version "1.56.2"
-  url "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
-  sha256 "a5a50ec014b27656c198e560796f3b41180f3bdb0c19f0005193f79ed47fc8b8"
+  version "1.71.0"
+  url "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+  sha256 "28471a17013a4d272b70542f1bc49602b2cbeb582c6b4c46cc2d8f4b6a0619df"
   license "MIT"
 
   depends_on :linux
